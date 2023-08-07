@@ -1,0 +1,673 @@
+--
+-- PostgreSQL database cluster dump
+--
+
+SET default_transaction_read_only = off;
+
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+
+--
+-- Drop databases (except postgres and template1)
+--
+
+DROP DATABASE postgres_db;
+
+
+
+
+--
+-- Drop roles
+--
+
+DROP ROLE postgres;
+
+
+--
+-- Roles
+--
+
+CREATE ROLE postgres;
+ALTER ROLE postgres WITH SUPERUSER INHERIT CREATEROLE CREATEDB LOGIN REPLICATION BYPASSRLS PASSWORD 'md5f0b3492f3c382e5338eda87a59c6b843';
+
+
+
+
+
+
+--
+-- Databases
+--
+
+--
+-- Database "template1" dump
+--
+
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 13.11 (Debian 13.11-1.pgdg120+1)
+-- Dumped by pg_dump version 13.11 (Debian 13.11-1.pgdg120+1)
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
+SET check_function_bodies = false;
+SET xmloption = content;
+SET client_min_messages = warning;
+SET row_security = off;
+
+UPDATE pg_catalog.pg_database SET datistemplate = false WHERE datname = 'template1';
+DROP DATABASE template1;
+--
+-- Name: template1; Type: DATABASE; Schema: -; Owner: postgres
+--
+
+CREATE DATABASE template1 WITH TEMPLATE = template0 ENCODING = 'UTF8' LOCALE = 'en_US.utf8';
+
+
+ALTER DATABASE template1 OWNER TO postgres;
+
+\connect template1
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
+SET check_function_bodies = false;
+SET xmloption = content;
+SET client_min_messages = warning;
+SET row_security = off;
+
+--
+-- Name: DATABASE template1; Type: COMMENT; Schema: -; Owner: postgres
+--
+
+COMMENT ON DATABASE template1 IS 'default template for new databases';
+
+
+--
+-- Name: template1; Type: DATABASE PROPERTIES; Schema: -; Owner: postgres
+--
+
+ALTER DATABASE template1 IS_TEMPLATE = true;
+
+
+\connect template1
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
+SET check_function_bodies = false;
+SET xmloption = content;
+SET client_min_messages = warning;
+SET row_security = off;
+
+--
+-- Name: DATABASE template1; Type: ACL; Schema: -; Owner: postgres
+--
+
+REVOKE CONNECT,TEMPORARY ON DATABASE template1 FROM PUBLIC;
+GRANT CONNECT ON DATABASE template1 TO PUBLIC;
+
+
+--
+-- PostgreSQL database dump complete
+--
+
+--
+-- Database "postgres" dump
+--
+
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 13.11 (Debian 13.11-1.pgdg120+1)
+-- Dumped by pg_dump version 13.11 (Debian 13.11-1.pgdg120+1)
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
+SET check_function_bodies = false;
+SET xmloption = content;
+SET client_min_messages = warning;
+SET row_security = off;
+
+DROP DATABASE postgres;
+--
+-- Name: postgres; Type: DATABASE; Schema: -; Owner: postgres
+--
+
+CREATE DATABASE postgres WITH TEMPLATE = template0 ENCODING = 'UTF8' LOCALE = 'en_US.utf8';
+
+
+ALTER DATABASE postgres OWNER TO postgres;
+
+\connect postgres
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
+SET check_function_bodies = false;
+SET xmloption = content;
+SET client_min_messages = warning;
+SET row_security = off;
+
+--
+-- Name: DATABASE postgres; Type: COMMENT; Schema: -; Owner: postgres
+--
+
+COMMENT ON DATABASE postgres IS 'default administrative connection database';
+
+
+--
+-- PostgreSQL database dump complete
+--
+
+--
+-- Database "postgres_db" dump
+--
+
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 13.11 (Debian 13.11-1.pgdg120+1)
+-- Dumped by pg_dump version 13.11 (Debian 13.11-1.pgdg120+1)
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
+SET check_function_bodies = false;
+SET xmloption = content;
+SET client_min_messages = warning;
+SET row_security = off;
+
+--
+-- Name: postgres_db; Type: DATABASE; Schema: -; Owner: postgres
+--
+
+CREATE DATABASE postgres_db WITH TEMPLATE = template0 ENCODING = 'UTF8' LOCALE = 'en_US.utf8';
+
+
+ALTER DATABASE postgres_db OWNER TO postgres;
+
+\connect postgres_db
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
+SET check_function_bodies = false;
+SET xmloption = content;
+SET client_min_messages = warning;
+SET row_security = off;
+
+SET default_tablespace = '';
+
+SET default_table_access_method = heap;
+
+--
+-- Name: groups; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.groups (
+    group_id integer NOT NULL,
+    group_name character varying(50),
+    faculty character varying(50)
+);
+
+
+ALTER TABLE public.groups OWNER TO postgres;
+
+--
+-- Name: groups_group_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.groups_group_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.groups_group_id_seq OWNER TO postgres;
+
+--
+-- Name: groups_group_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.groups_group_id_seq OWNED BY public.groups.group_id;
+
+
+--
+-- Name: student_grades; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.student_grades (
+    grade_id integer NOT NULL,
+    student_id integer,
+    subject_id integer,
+    grade integer,
+    date_received date
+);
+
+
+ALTER TABLE public.student_grades OWNER TO postgres;
+
+--
+-- Name: student_grades_grade_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.student_grades_grade_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.student_grades_grade_id_seq OWNER TO postgres;
+
+--
+-- Name: student_grades_grade_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.student_grades_grade_id_seq OWNED BY public.student_grades.grade_id;
+
+
+--
+-- Name: students; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.students (
+    student_id integer NOT NULL,
+    first_name character varying(50),
+    last_name character varying(50),
+    email character varying(100),
+    group_id integer
+);
+
+
+ALTER TABLE public.students OWNER TO postgres;
+
+--
+-- Name: students_student_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.students_student_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.students_student_id_seq OWNER TO postgres;
+
+--
+-- Name: students_student_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.students_student_id_seq OWNED BY public.students.student_id;
+
+
+--
+-- Name: subjects; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.subjects (
+    subject_id integer NOT NULL,
+    subject_name character varying(100),
+    teacher_id integer
+);
+
+
+ALTER TABLE public.subjects OWNER TO postgres;
+
+--
+-- Name: subjects_subject_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.subjects_subject_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.subjects_subject_id_seq OWNER TO postgres;
+
+--
+-- Name: subjects_subject_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.subjects_subject_id_seq OWNED BY public.subjects.subject_id;
+
+
+--
+-- Name: teachers; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.teachers (
+    teacher_id integer NOT NULL,
+    first_name character varying(50),
+    last_name character varying(50),
+    email character varying(100)
+);
+
+
+ALTER TABLE public.teachers OWNER TO postgres;
+
+--
+-- Name: teachers_teacher_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.teachers_teacher_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.teachers_teacher_id_seq OWNER TO postgres;
+
+--
+-- Name: teachers_teacher_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.teachers_teacher_id_seq OWNED BY public.teachers.teacher_id;
+
+
+--
+-- Name: groups group_id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.groups ALTER COLUMN group_id SET DEFAULT nextval('public.groups_group_id_seq'::regclass);
+
+
+--
+-- Name: student_grades grade_id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.student_grades ALTER COLUMN grade_id SET DEFAULT nextval('public.student_grades_grade_id_seq'::regclass);
+
+
+--
+-- Name: students student_id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.students ALTER COLUMN student_id SET DEFAULT nextval('public.students_student_id_seq'::regclass);
+
+
+--
+-- Name: subjects subject_id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.subjects ALTER COLUMN subject_id SET DEFAULT nextval('public.subjects_subject_id_seq'::regclass);
+
+
+--
+-- Name: teachers teacher_id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.teachers ALTER COLUMN teacher_id SET DEFAULT nextval('public.teachers_teacher_id_seq'::regclass);
+
+
+--
+-- Data for Name: groups; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.groups (group_id, group_name, faculty) FROM stdin;
+1	First	Engeneering
+2	Second	Engeneering
+3	Third	Engeneering
+\.
+
+
+--
+-- Data for Name: student_grades; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.student_grades (grade_id, student_id, subject_id, grade, date_received) FROM stdin;
+1	24	2	5	2023-04-20
+2	13	5	3	2023-01-23
+3	28	3	2	2023-04-24
+4	17	3	2	2023-05-11
+5	15	2	4	2023-04-12
+6	1	1	2	2023-05-17
+7	7	1	5	2023-06-26
+8	29	3	5	2023-06-23
+9	17	4	5	2023-01-02
+10	30	4	5	2023-02-17
+11	30	2	2	2023-04-08
+12	18	1	4	2023-03-22
+13	25	4	1	2023-02-13
+14	19	4	1	2023-06-14
+15	28	3	4	2023-06-01
+16	6	4	2	2023-04-03
+17	16	3	2	2023-02-20
+18	17	3	3	2023-05-22
+19	12	3	5	2023-02-10
+20	21	4	2	2023-03-12
+21	22	5	4	2023-03-16
+22	12	4	4	2023-06-23
+23	12	3	2	2023-03-24
+24	27	5	2	2023-02-01
+25	19	5	2	2023-02-18
+26	22	3	4	2023-03-23
+27	16	5	1	2023-05-17
+28	12	1	2	2023-01-10
+29	2	4	2	2023-02-10
+30	17	2	4	2023-01-13
+\.
+
+
+--
+-- Data for Name: students; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.students (student_id, first_name, last_name, email, group_id) FROM stdin;
+1	Єлисей	Микитюк	olytvynenko@example.net	2
+2	Світлана	Дергач	pnazarenko@example.com	2
+3	Нестор	Вернигора	jivashchenko@example.net	3
+4	Леопольд	Худобʼяк	miroshnychenkotetiana@example.net	3
+5	Тереза	Штепа	mykolaidanylenko@example.com	3
+6	Олександр	Василенко	kyrylodanyliuk@example.com	3
+7	Остап	Байда	xsyrotenko@example.net	3
+8	Олекса	Москаль	mariia88@example.org	2
+9	Амалія	Рябошапка	ruslanshamrai@example.com	1
+10	Арсен	Перебийніс	ievadanylchuk@example.net	1
+11	Болеслав	Дашенко	taras68@example.net	1
+12	Ілля	Ільєнко	hlytvynenko@example.net	1
+13	Ганна	Демиденко	taraslesyk@example.net	3
+14	Світлана	Даценко	khudobiakalla@example.net	3
+15	Ліза	Гоголь-Яновський	odarka13@example.net	3
+16	Юстим	Дзюба	evanchenko@example.net	3
+17	Давид	Забіла	adammykhailiuk@example.net	1
+18	Богдан	Ільєнко	nazarbaturynets@example.org	3
+19	Макар	Бабійчук	leonid62@example.net	1
+20	Франц	Рябець	solomon99@example.net	1
+21	Антон	Венгринович	fastenkoerika@example.org	1
+22	Франц	Гречко	valenkohavrylo@example.com	2
+23	Єва	Проценко	khmarasofiia@example.com	1
+24	Макар	Назаренко	zvelychko@example.net	1
+25	Борислав	Опанасенко	bdatsenko@example.org	2
+26	Олександр	Авдєєнко	danchukhordii@example.net	3
+27	Марина	Стус	valentynaverchenko@example.org	3
+28	Ольга	Тихий	ckovpak@example.org	2
+29	Валерій	Пелех	aarongoliash@example.com	1
+30	Яків	Коваленко	azartsymbal@example.org	3
+\.
+
+
+--
+-- Data for Name: subjects; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.subjects (subject_id, subject_name, teacher_id) FROM stdin;
+1	Математика	1
+2	Фізика	2
+3	Программування	3
+4	Англійська мова	4
+5	Українська мова	5
+\.
+
+
+--
+-- Data for Name: teachers; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.teachers (teacher_id, first_name, last_name, email) FROM stdin;
+1	Орися	Бабенко	leontii88@example.org
+2	Федір	Авраменко	komarvasyl@example.net
+3	Микита	Рак	anita83@example.net
+4	Лукʼян	Єрьоменко	bohdan03@example.net
+5	Симон	Верхола	vivcharenkooleksa@example.org
+\.
+
+
+--
+-- Name: groups_group_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.groups_group_id_seq', 3, true);
+
+
+--
+-- Name: student_grades_grade_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.student_grades_grade_id_seq', 30, true);
+
+
+--
+-- Name: students_student_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.students_student_id_seq', 30, true);
+
+
+--
+-- Name: subjects_subject_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.subjects_subject_id_seq', 5, true);
+
+
+--
+-- Name: teachers_teacher_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.teachers_teacher_id_seq', 5, true);
+
+
+--
+-- Name: groups groups_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.groups
+    ADD CONSTRAINT groups_pkey PRIMARY KEY (group_id);
+
+
+--
+-- Name: student_grades student_grades_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.student_grades
+    ADD CONSTRAINT student_grades_pkey PRIMARY KEY (grade_id);
+
+
+--
+-- Name: students students_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.students
+    ADD CONSTRAINT students_pkey PRIMARY KEY (student_id);
+
+
+--
+-- Name: subjects subjects_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.subjects
+    ADD CONSTRAINT subjects_pkey PRIMARY KEY (subject_id);
+
+
+--
+-- Name: teachers teachers_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.teachers
+    ADD CONSTRAINT teachers_pkey PRIMARY KEY (teacher_id);
+
+
+--
+-- Name: student_grades student_grades_student_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.student_grades
+    ADD CONSTRAINT student_grades_student_id_fkey FOREIGN KEY (student_id) REFERENCES public.students(student_id);
+
+
+--
+-- Name: student_grades student_grades_subject_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.student_grades
+    ADD CONSTRAINT student_grades_subject_id_fkey FOREIGN KEY (subject_id) REFERENCES public.subjects(subject_id);
+
+
+--
+-- Name: students students_group_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.students
+    ADD CONSTRAINT students_group_id_fkey FOREIGN KEY (group_id) REFERENCES public.groups(group_id);
+
+
+--
+-- Name: subjects subjects_teacher_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.subjects
+    ADD CONSTRAINT subjects_teacher_id_fkey FOREIGN KEY (teacher_id) REFERENCES public.teachers(teacher_id);
+
+
+--
+-- PostgreSQL database dump complete
+--
+
+--
+-- PostgreSQL database cluster dump complete
+--
+
