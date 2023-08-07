@@ -1,5 +1,4 @@
 # Create_DB-Postgressql_and_queries_with_python
-
 1. Create a database, use the create_tables.py file (after running the container with Postgresql)
 
 2.Fill the database with data, use the file insert_data.py
